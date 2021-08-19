@@ -1,5 +1,8 @@
 ﻿using Homey.Data;
+using Homey.Data.Common;
+using Homey.Data.Common.Repositories;
 using Homey.Data.Models;
+using Homey.Data.Repositories;
 using Homey.Data.Seeding;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +34,10 @@ namespace Homey.API
 
             services.AddControllers();
             services.AddSingleton(this.configuration);
+
+            services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IDbQueryRunner, DbQueryRunner>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

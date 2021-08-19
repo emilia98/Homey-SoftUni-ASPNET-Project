@@ -24,7 +24,9 @@ namespace Homey.Data.Seeding
 
             var seeders = new List<ISeeder>
             {
-                new RolesSeeder()
+                new RolesSeeder(),
+                new UsersSeeder(),
+                new UsersToRolesSeeder()
             };
 
             foreach (var seeder in seeders)
