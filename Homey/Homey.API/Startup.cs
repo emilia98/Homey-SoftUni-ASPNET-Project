@@ -4,6 +4,8 @@ using Homey.Data.Common.Repositories;
 using Homey.Data.Models;
 using Homey.Data.Repositories;
 using Homey.Data.Seeding;
+using Homey.Services.Data;
+using Homey.Services.Data.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +40,8 @@ namespace Homey.API
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
+
+            services.AddTransient<IPropertyTypeService, PropertyTypeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

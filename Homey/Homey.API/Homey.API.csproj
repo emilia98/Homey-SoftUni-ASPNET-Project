@@ -8,6 +8,9 @@
     <ProjectReference Include="..\Data\Homey.Data\Homey.Data.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\Services\Homey.Services.Data\Homey.Services.Data.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
