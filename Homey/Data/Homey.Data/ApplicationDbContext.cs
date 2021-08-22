@@ -25,6 +25,10 @@ namespace Homey.Data
 
         public DbSet<PropertyType> PropertyTypes { get; set; }
 
+        public DbSet<UserPhoto> UserPhotos { get; set; }
+
+        public DbSet<UserProfile> UserProfiles { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
