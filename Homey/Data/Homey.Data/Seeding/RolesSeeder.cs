@@ -15,6 +15,7 @@ namespace Homey.Data.Seeding
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
 
             await SeedRoleAsync(roleManager, GlobalConstants.AdminRoleName);
+            await SeedRoleAsync(roleManager, GlobalConstants.UserRoleName);
         }
 
         public static async Task SeedRoleAsync(RoleManager<ApplicationRole> roleManager, string roleName)

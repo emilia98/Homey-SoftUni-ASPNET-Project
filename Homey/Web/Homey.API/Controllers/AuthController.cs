@@ -64,6 +64,7 @@ namespace Homey.API.Controllers
             });
         }
 
+        [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterInputModel registerInputModel)
         {
             if (!this.ModelState.IsValid)
@@ -121,7 +122,7 @@ namespace Homey.API.Controllers
         }
 
         [HttpGet("admin")]
-        [Authorize]
+        [Authorize(Policy = "RequireAdminRole")]
         public IActionResult Admin()
         {
             return Ok();
