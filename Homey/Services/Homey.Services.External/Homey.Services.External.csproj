@@ -8,6 +8,7 @@
     <None Remove="Contracts\" />
     <None Remove="CloudinaryDotNet" />
     <None Remove="Settings\" />
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contracts\" />
@@ -15,5 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.15.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Homey.Data.Models\Homey.Data.Models.csproj" />
   </ItemGroup>
 </Project>

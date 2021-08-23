@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Homey.Data.Models;
 using Homey.InputModels.Auth;
+using Homey.Services.External.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Homey.API.Controllers
 {
@@ -16,15 +15,18 @@ namespace Homey.API.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<ApplicationRole> roleManager;
+        private readonly ITokenService tokenService;
 
         public AuthController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            RoleManager<ApplicationRole> roleManager)
+            RoleManager<ApplicationRole> roleManager,
+            ITokenService tokenService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.tokenService = tokenService;
         }
 
         [HttpPost("login")]
@@ -55,7 +57,11 @@ namespace Homey.API.Controllers
                 });
             }
 
-            return Ok("Welcome back!");
+            return Ok(new
+            {
+                Username = user.UserName,
+                Token = await tokenService.CreateToken(user)
+            });
         }
 
         public async Task<IActionResult> Register(RegisterInputModel registerInputModel)
@@ -102,12 +108,23 @@ namespace Homey.API.Controllers
                 });
             }
 
-            return Ok("Successfully registered in the app!");
+            return Ok(new
+            {
+                Username = newUser.UserName,
+                Token = await tokenService.CreateToken(newUser)
+            });
         }
 
         private async Task<ApplicationUser> GetUserByEmail(string email)
         {
             return await userManager.Users.FirstOrDefaultAsync(x => x.Email == email);
+        }
+
+        [HttpGet("admin")]
+        [Authorize]
+        public IActionResult Admin()
+        {
+            return Ok();
         }
     }
 }
