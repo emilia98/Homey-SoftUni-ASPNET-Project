@@ -11,6 +11,7 @@
     <None Remove="Helpers\" />
     <None Remove="Microsoft.IdentityModel.Tokens" />
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Controllers\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
@@ -41,8 +42,12 @@
     <ProjectReference Include="..\..\Services\Homey.Services.External\Homey.Services.External.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\Homey.OutputModels\Homey.OutputModels.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Controllers\Admin\" />
   </ItemGroup>
 </Project>

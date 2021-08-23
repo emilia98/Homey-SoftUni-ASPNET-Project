@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homey.InputModels", "Web\Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homey.Services.External", "Services\Homey.Services.External\Homey.Services.External.csproj", "{0A394A36-3FA3-4433-A3F8-D32FF3D4576F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homey.OutputModels", "Web\Homey.OutputModels\Homey.OutputModels.csproj", "{14DC50C0-031D-4FDC-9595-9D2A9CAAECCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{0A394A36-3FA3-4433-A3F8-D32FF3D4576F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A394A36-3FA3-4433-A3F8-D32FF3D4576F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A394A36-3FA3-4433-A3F8-D32FF3D4576F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14DC50C0-031D-4FDC-9595-9D2A9CAAECCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14DC50C0-031D-4FDC-9595-9D2A9CAAECCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14DC50C0-031D-4FDC-9595-9D2A9CAAECCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14DC50C0-031D-4FDC-9595-9D2A9CAAECCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,5 +93,6 @@ Global
 		{7241D417-6170-4688-A285-863305077293} = {B6B668E6-BBC7-4AE6-A422-14B77655D5E6}
 		{996A16E8-788A-420C-80A1-78B23F51A4FB} = {B6B668E6-BBC7-4AE6-A422-14B77655D5E6}
 		{0A394A36-3FA3-4433-A3F8-D32FF3D4576F} = {2B1B45C9-4C34-4DE5-A3EA-0504F95100C4}
+		{14DC50C0-031D-4FDC-9595-9D2A9CAAECCD} = {B6B668E6-BBC7-4AE6-A422-14B77655D5E6}
 	EndGlobalSection
 EndGlobal
