@@ -82,10 +82,11 @@ namespace Homey.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            AutoMapperConfig.RegisterMappings(typeof(PropertyType).GetTypeInfo().Assembly);
-            AutoMapperConfig.RegisterMappings(typeof(BaseInputModel).GetTypeInfo().Assembly);
-            AutoMapperConfig.RegisterMappings(typeof(PropertyTypeOutputModel).GetTypeInfo().Assembly);
-            
+            AutoMapperConfig.RegisterMappings(
+                typeof(PropertyTypeOutputModel).GetTypeInfo().Assembly,
+                typeof(BaseInputModel).GetTypeInfo().Assembly,
+                typeof(PropertyType).GetTypeInfo().Assembly);
+        
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

@@ -44,7 +44,8 @@ namespace Homey.API.Controllers.Admin
         [HttpGet("all")]
         public IActionResult GetAll()
         {
-            var propertyTypes = propertyTypeService.GetAll<List<PropertyTypeOutputModel>>();
+            var propertyTypes = propertyTypeService.GetAll<PropertyTypeOutputModel>();
+           
             return Ok(new
             {
                 PropertyTypes = propertyTypes
@@ -52,7 +53,7 @@ namespace Homey.API.Controllers.Admin
         }
 
         [HttpPost("new")]
-        public IActionResult AddPropertyType([FromBody] PropertyTypeInputModel propertyTypeInputModel)
+        public async Task<IActionResult> AddPropertyType([FromBody] PropertyTypeInputModel propertyTypeInputModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -66,6 +67,20 @@ namespace Homey.API.Controllers.Admin
                 return BadRequest(new { ErrorMsg = "Property type with this name already exists!" });
             }
 
+            try
+            {
+                var newPropertyType = new PropertyType
+                {
+                    Name = propertyTypeInputModel.Name
+                };
+
+                await this.propertyTypeService.Create(newPropertyType);
+            }
+            catch
+            {
+                return StatusCode(500, new { ErrorMsg = "Error while creating a new property!" });
+            }
+
             return Ok(new { SuccessMsg = "Successfully added a new property type!" });
 
         }
@@ -77,7 +92,7 @@ namespace Homey.API.Controllers.Admin
 
             if (propertyType == null)
             {
-                return BadRequest(new { ErrorMsg = "Trying to delete a non-existing property type!" });
+                return NotFound(new { ErrorMsg = "Trying to delete a non-existing property type!" });
             }
 
             try
@@ -100,7 +115,7 @@ namespace Homey.API.Controllers.Admin
 
             if (propertyType == null)
             {
-                return BadRequest(new { ErrorMsg = "Trying to updated a non-existing property type" });
+                return NotFound(new { ErrorMsg = "Trying to updated a non-existing property type" });
             }
 
             try
