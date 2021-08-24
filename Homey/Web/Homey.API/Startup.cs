@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 using Homey.Common;
 using Homey.Data;
 using Homey.Data.Common;
@@ -6,10 +7,14 @@ using Homey.Data.Common.Repositories;
 using Homey.Data.Models;
 using Homey.Data.Repositories;
 using Homey.Data.Seeding;
+using Homey.InputModels;
+using Homey.InputModels.Property;
+using Homey.OutputModels;
 using Homey.Services.Data;
 using Homey.Services.Data.Contracts;
 using Homey.Services.External;
 using Homey.Services.External.Contracts;
+using Homey.Services.Mapping;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -77,6 +82,10 @@ namespace Homey.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(typeof(PropertyType).GetTypeInfo().Assembly);
+            AutoMapperConfig.RegisterMappings(typeof(BaseInputModel).GetTypeInfo().Assembly);
+            AutoMapperConfig.RegisterMappings(typeof(PropertyTypeOutputModel).GetTypeInfo().Assembly);
+            
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

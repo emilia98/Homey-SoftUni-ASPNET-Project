@@ -7,9 +7,11 @@
   <ItemGroup>
     <None Remove="Auth\" />
     <None Remove="System.ComponentModel.Annotations" />
+    <None Remove="Property\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
+    <Folder Include="Property\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />

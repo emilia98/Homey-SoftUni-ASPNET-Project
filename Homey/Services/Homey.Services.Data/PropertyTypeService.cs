@@ -58,6 +58,11 @@ namespace Homey.Services.Data
             return query.Where(x => x.Id == id).To<T>().FirstOrDefault();
         }
 
+        public PropertyType GetByName(string name)
+        {
+            return this.propertyTypeRepository.All().Where(x => x.Name == name).FirstOrDefault();
+        }
+
         public async Task Update(PropertyType entity)
         {
             this.propertyTypeRepository.Update(entity);
